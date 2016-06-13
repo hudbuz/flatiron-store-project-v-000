@@ -4,7 +4,9 @@ describe 'Feature Test: Category', :type => :feature do
     before(:each) do
       @category = Category.first
       @items = @category.items
+     
       visit category_path(@category)
+
     end
 
     it "Lists Category Title" do
@@ -27,7 +29,7 @@ describe 'Feature Test: Category', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = User.first
+        @user = FactoryGirl.create(:user, email: "test@test.com", password: "testtest")
         login_as(@user, scope: :user)
       end
 

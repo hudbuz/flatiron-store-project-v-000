@@ -4,7 +4,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = User.first
+        @user = FactoryGirl.create(:user, email: "test@test.com", password: "testtest")
         @user.current_cart = @user.carts.create
         @current_cart = @user.current_cart
         @first_item = Item.first
@@ -60,7 +60,7 @@ describe 'Feature Test: Cart', :type => :feature do
 
     context "logged in" do
       before(:each) do
-        @user = User.first
+        @user = FactoryGirl.create(:user, email: "test@test.com", password: "testtest")
         login_as(@user, scope: :user)
       end
 

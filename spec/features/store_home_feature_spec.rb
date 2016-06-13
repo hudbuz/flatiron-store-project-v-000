@@ -35,7 +35,7 @@ describe 'Feature Test: Store', :type => :feature do
 
       context "logged in" do
         before(:each) do
-          @user = User.first
+          @user = FactoryGirl.create(:user, email: "test@test.com", password: "testtest")
           login_as(@user, scope: :user)
         end
 
@@ -65,7 +65,7 @@ describe 'Feature Test: Store', :type => :feature do
 
       context "logged in" do
         before(:each) do
-          @user = User.first
+        @user = FactoryGirl.create(:user, email: "test@test.com", password: "testtest")
           login_as(@user, scope: :user)
         end
 
@@ -81,6 +81,7 @@ describe 'Feature Test: Store', :type => :feature do
 
         it "lets users sign out" do
           visit store_path
+          
           click_link("Sign out")
           expect(page.current_path).to eq(store_path)
           expect(page).to have_link("sign in")
