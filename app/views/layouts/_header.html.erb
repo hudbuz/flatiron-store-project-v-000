@@ -2,7 +2,7 @@
     
          <%= link_to "Store Home", store_path %> <br>
          <% if current_user %>
-        <% if current_user.current_cart != nil %>
+        <% unless current_user.current_cart.try(:status) == 'complete' || current_user.current_cart == nil %>
            <%= link_to "Cart", cart_path(current_user.current_cart) %><br>
 
         <% end %>
@@ -18,7 +18,7 @@
 
 
         <% if current_user %>
-        <% if current_user.current_cart != nil %>
+        <% unless current_user.current_cart.try(:status) == 'complete' || current_user.current_cart == nil %>
         Current Cart(<%= current_user.current_cart.line_items.count %>)
         <% end %>
         <% end %>

@@ -87,6 +87,7 @@ describe 'Feature Test: Cart', :type => :feature do
         @user.current_cart = nil
         @user.save
         visit store_path
+      
         within("form[action='#{line_items_path(item_id: first_item)}']") do
           click_button("Add to Cart")
         end
@@ -152,7 +153,7 @@ describe 'Feature Test: Cart', :type => :feature do
         expect(@user.current_cart.line_items.first.quantity).to eq(2)
         expect(page).to have_content("Quantity: 2")
         total = first_item.price * 2
-        save_and_open_page
+
         expect(page).to have_content("$#{total.to_f/100}")
       end
 

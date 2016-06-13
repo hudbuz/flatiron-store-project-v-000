@@ -9,7 +9,7 @@ class CartsController < ApplicationController
   def checkout
     
     total = current_cart.checkout(current_user)
-    current_cart.update(status: 'complete')
+    current_user.current_cart.update(status: 'complete')
     current_user.current_cart = nil
     flash[:notice] = "Your order has been complete."
 
