@@ -3,7 +3,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :cart
 
   def self.new_line(current_user, params)
-  if current_user.current_cart == []
+  if current_user.current_cart == [] or current_user.current_cart == nil
     current_user.current_cart = Cart.create
     current_user.current_cart.add_item(params[:item_id]).save
     current_user.current_cart.line_items.find(params[:item_id]).save
@@ -14,7 +14,7 @@ class LineItem < ActiveRecord::Base
   
   end
 
-  binding.pry
+
 
     
 
